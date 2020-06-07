@@ -19,3 +19,16 @@ after_success:
   - docker push shred86/multi-nginx
   - docker push shred86/multi-server
   - docker push shred86/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-west-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-west-1-633802009576
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
